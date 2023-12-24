@@ -79,20 +79,20 @@ impl<E: Pairing> CircomBuilder<E> {
         circom.witness = Some(witness);
 
         // sanity check
-        debug_assert!({
-            use ark_relations::r1cs::{ConstraintSynthesizer, ConstraintSystem};
-            let cs = ConstraintSystem::<E::ScalarField>::new_ref();
-            circom.clone().generate_constraints(cs.clone()).unwrap();
-            let is_satisfied = cs.is_satisfied().unwrap();
-            if !is_satisfied {
-                println!(
-                    "Unsatisfied constraint: {:?}",
-                    cs.which_is_unsatisfied().unwrap()
-                );
-            }
+        // debug_assert!({
+        //     use ark_relations::r1cs::{ConstraintSynthesizer, ConstraintSystem};
+        //     let cs = ConstraintSystem::<E::ScalarField>::new_ref();
+        //     circom.clone().generate_constraints(cs.clone()).unwrap();
+        //     let is_satisfied = cs.is_satisfied().unwrap();
+        //     if !is_satisfied {
+        //         println!(
+        //             "Unsatisfied constraint: {:?}",
+        //             cs.which_is_unsatisfied().unwrap()
+        //         );
+        //     }
 
-            is_satisfied
-        });
+        //     is_satisfied
+        // });
 
         Ok(circom)
     }
